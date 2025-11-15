@@ -1,0 +1,431 @@
+html,
+body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+body {
+    position       : relative;
+    margin         : 0px;
+    height         : 100%;
+    -ms-user-select: none;
+    user-select    : none;
+    touch-action   : none;
+}
+
+#home-plan::selection {
+    background: #0042e0;
+}
+
+#application-menu-toolbar,
+#home-pane-toolbar,
+#catalog-furniture-pane,
+#furniture-catalog,
+#catalog-furniture-splitter,
+#furniture-view,
+#furniture-plan-splitter,
+#plan-3D-view-pane,
+#home-plan,
+#plan-3D-view-splitter,
+#home-3D-view {
+    position: absolute;
+    background:#111;
+}
+
+/*
+ * No-touch devices common CSS
+ */
+#application-menu-toolbar {
+    display: none;
+}
+
+#home-pane-toolbar {
+    top        : 0;
+    height     : 32px;
+    white-space: nowrap;
+}
+
+#catalog-furniture-pane {
+    top     : 32px;
+    left    : 0;
+    width   : 296px;
+    height  : calc(100% - 32px);
+    overflow: hidden;
+}
+
+#furniture-catalog {
+    height    : 70%;
+    width     : 100%;
+    overflow-y: hidden;
+}
+
+#furniture-catalog-list {
+    height    : calc(100% - 3.3em);
+    width     : 100%;
+    overflow-y: scroll;
+}
+
+#catalog-furniture-splitter {
+    top  : 70%;
+    left : 0;
+    width: 100%;
+}
+
+#furniture-view {
+    top       : calc(70% + 4px);
+    width     : 100%;
+    height    : calc(30% - 4px);
+    box-sizing: border-box;
+}
+
+#furniture-view .tree-table {
+    width     : 100%;
+    height    : 100%;
+    overflow-y: hidden;
+}
+
+.pane-splitter.vertical::after {
+    transform: rotate(90deg);
+    bottom   : initial;
+    top      : 50%;
+}
+
+#furniture-plan-splitter {
+    top   : 30px;
+    left  : 296px;
+    height: calc(100% - 30px);
+}
+
+#plan-3D-view-pane {
+    top   : 30px;
+    left  : 300px;
+    width : calc(100% - 300px);
+    height: calc(100% - 30px);
+}
+
+#home-plan {
+    width        : 100%;
+    height       : calc(50% - 2px);
+    font-family  : sans-serif;
+    border-top   : 1px solid #111;
+    border-bottom: 1px solid #111;
+}
+
+#plan-3D-view-splitter {
+    top  : calc(50% - 2px);
+    left : 0;
+    width: 100%;
+}
+
+#home-3D-view {
+    top          : calc(50% + 2px);
+    width        : 100%;
+    height       : calc(50% - 2px);
+    border-bottom: 1px solid #111;
+}
+
+#home-plan:focus,
+#home-3D-view:focus {
+    outline: none;
+}
+
+@media (orientation: portrait) {
+    #catalog-furniture-pane {
+        width: 160px;
+    }
+
+    #furniture-plan-splitter {
+        left: 160px;
+    }
+
+    #plan-3D-view-pane {
+        left : 164px;
+        width: calc(100% - 164px);
+    }
+}
+
+/*
+ * Touch devices common CSS - ignored by IE (coarse point query required for some Android devices)
+ */
+@media (hover: none),
+(pointer: coarse) {
+    body {
+        margin: 5px;
+        height: calc(100% - 10px);
+    }
+
+    /* No scroll bars under Chrome */
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    #application-menu-toolbar {
+        display: flex;
+        top    : calc(100% - 40px);
+        height : 40px;
+        width  : calc(28px + 15px);
+    }
+
+    #home-pane-toolbar {
+        left  : calc(28px + 20px);
+        top   : calc(100% - 40px);
+        height: 40px;
+        width : calc(100% - 28px - 20px);
+    }
+
+    @media (max-width: 940px) {
+        #application-menu-toolbar {
+            width: calc(28px + 11px);
+        }
+
+        #home-pane-toolbar {
+            left : calc(28px + 13px);
+            width: calc(100% - 28px - 13px);
+        }
+    }
+
+    .toolbar .toolbar-button {
+        margin-top: 0px;
+        height    : calc(100% - 2px);
+    }
+
+    #furniture-plan-splitter {
+        width: 8px;
+    }
+
+    #catalog-furniture-splitter,
+    #plan-3D-view-splitter {
+        height: 8px;
+    }
+
+    #catalog-furniture-pane {
+        top   : 0;
+        height: calc(100% - 42px);
+    }
+
+    #furniture-plan-splitter {
+        top   : 0;
+        height: calc(100% - 40px);
+    }
+
+    #plan-3D-view-pane {
+        top   : 0;
+        height: calc(100% - 41px);
+    }
+
+    #catalog-furniture-pane {
+        border-bottom: 1px solid gray;
+    }
+
+    #home-plan {
+        width       : calc(100% - 1px);
+        height      : calc(50% - 4px);
+        border-right: 1px solid #111;
+    }
+
+    #home-3D-view {
+        top         : calc(50% + 4px);
+        width       : calc(100% - 1px);
+        height      : calc(50% - 4px);
+        border-right: 1px solid #111;
+    }
+
+    .popup-menu .item * {
+        font-size: 17px;
+    }
+
+    .tree-table {
+        font-size: 0.85em;
+    }
+
+    /* Small touch devices like smartphones */
+    @media (max-width: 743px),
+    (max-height: 511px) {
+        .pane-splitter {
+            display: none;
+        }
+
+        #furniture-catalog {
+            height: 100%;
+        }
+
+        #furniture-catalog-list {
+            height: calc(100% - 2.5em);
+            left  : 0;
+        }
+
+        #catalog-furniture-splitter,
+        #furniture-view {
+            display: none;
+        }
+
+        #furniture-view {
+            display: none;
+        }
+
+        @media (orientation: portrait),
+        (max-aspect-ratio: 5/4) {
+            #furniture-filter {
+                height: 0px;
+            }
+
+            #plan-3D-view-pane {
+                top   : 0;
+                left  : 0;
+                width : 100%;
+                height: calc(100% - 80px - 40px);
+            }
+
+            #home-3D-view {
+                top   : 0;
+                width : calc(100% - 2px);
+                height: calc(50% - 2px - 4px);
+                border: 1px solid #111;
+            }
+
+            #plan-3D-view-splitter {
+                display: initial;
+                top    : calc(50% - 4px);
+                left   : 0;
+                width  : calc(100%);
+                height : 8px;
+            }
+
+            #home-plan {
+                top   : calc(50% - 1px + 4px);
+                width : calc(100% - 2px);
+                height: calc(50% - 4px);
+                border: 1px solid #111;
+            }
+
+            /* Funiture catalog horizontal layout */
+
+            #catalog-furniture-pane {
+                top       : calc(100% - 40px - 80px);
+                left      : 0;
+                width     : calc(100% - 2px);
+                height    : 79px;
+                border-top: 0;
+                overflow-x: scroll;
+                overflow-y: hidden;
+            }
+
+            #furniture-catalog {
+                width: 100%;
+            }
+
+            #furniture-catalog-list {
+                width      : 100%;
+                height     : 100%;
+                overflow-x : scroll;
+                overflow-y : hidden;
+                white-space: nowrap;
+            }
+
+            .furniture-category-label {
+                display: none;
+            }
+
+            .furniture {
+                margin-top   : 0px;
+                margin-bottom: 0px;
+                white-space  : normal;
+            }
+
+            .furniture>.furniture-icon {
+                top: 3px;
+            }
+
+            .furniture>.furniture-label {
+                z-index    : 2;
+                text-shadow: white 0px -2px;
+            }
+
+            .furniture-category-separator {
+                display      : inline-block;
+                height       : 80px;
+                padding-right: 10px;
+                margin-right : 10px;
+                border-right : dashed 1px rgba(0, 0, 0, 0.4);
+            }
+        }
+
+        @media (orientation: landscape) and (min-aspect-ratio: 5/4) {
+            #catalog-furniture-pane {
+                top       : 0;
+                left      : 0;
+                width     : 150px;
+                height    : calc(100% - 40px - 2px);
+                overflow-x: hidden;
+                overflow-y: scroll;
+            }
+
+            #plan-3D-view-pane {
+                top   : 0;
+                left  : 150px;
+                width : calc(100% - 150px);
+                height: calc(100% - 40px);
+            }
+
+            #home-plan {
+                top   : 0;
+                width : calc(50% - 4px);
+                height: calc(100% - 2px);
+                border: 1px solid #111;
+            }
+
+            #plan-3D-view-splitter {
+                display: initial;
+                top    : 0;
+                left   : calc(50% - 4px);
+                width  : 8px;
+                height : calc(100%);
+            }
+
+            #home-3D-view {
+                top        : 0;
+                left       : calc(50% + 4px);
+                width      : calc(50% - 4px);
+                height     : calc(100% - 2px);
+                border     : 1px solid #111;
+                border-left: 0px;
+            }
+        }
+    }
+}
+
+/* Hide optional buttons when screen is too small */
+@media (max-width: 712px) {
+    #home-pane-toolbar .toolbar-optional {
+        display: none;
+    }
+}
+
+@media (hover: none),
+(pointer: coarse) {
+    @media (max-width: 800px) {
+        #home-pane-toolbar .toolbar-optional {
+            display: none;
+        }
+    }
+}
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    #home-plan canvas,
+    #home-3D-view {
+        visibility: visible;
+        width     : 100% !important;
+        height    : auto !important;
+    }
+
+    #plan-3D-view-pane {
+        top   : 0 !important;
+        left  : 0 !important;
+        width : 100% !important;
+        height: 100% !important;
+    }
+}
