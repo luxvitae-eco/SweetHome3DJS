@@ -2,7 +2,8 @@ import { defineConfig } from 'vite'
 import { mockDevServerPlugin } from 'vite-plugin-mock-dev-server'
 import eslint from 'vite-plugin-eslint';
 
-export default defineConfig({
+export default defineConfig(({ mode }: { mode: string }) => ({
+  base: mode === 'production' ? '/SweetHome3DJS/' : '/',
   plugins: [
     mockDevServerPlugin(/* plugin options */),
     eslint(),
@@ -18,4 +19,4 @@ export default defineConfig({
       '^/data': { target: 'http://example.com' },
     }
   }
-})
+}))
